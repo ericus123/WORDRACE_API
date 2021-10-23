@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12"
+  },
+  "name": "word_race_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ericus",
+  "license": "MIT"
+}
