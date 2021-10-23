@@ -1,0 +1,133 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "WORD RACE",
+      "description": "",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "tags": [],
+    "paths": {
+      "/api/auth/login": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Login",
+          "description": "Login to word race game",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "example": "ericus123"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password123"
+                    }
+                  }
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "msg": {
+                        "type": "string",
+                        "example": "Logged in successfuly"
+                      },
+                      "token": {
+                        "type": "string",
+                        "example": "jwttoken"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "msg": {
+                        "type": "string",
+                        "example": "Incorrect credentials"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/auth/check-login": {
+        "get": {
+          "tags": ["Auth"],
+          "summary": "Check Login",
+          "security": [
+            {
+              "AuthToken": []
+            }
+          ],
+          "description": "Check login details",
+  
+          "responses": {
+            "200": {
+              "description": "Ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "msg": {
+                        "type": "string",
+                        "example": "User is logged in"
+                      },
+                      "user": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "msg": {
+                        "type": "string",
+                        "example": "Please login"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  }
+}
