@@ -65,14 +65,11 @@ class AuthController {
 
   static async CheckLogin(req, res) {
     const { username } = req.user;
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).populate("scores");
     if (!user) {
       return res.status(404).json("User not found");
     }
-    const userData = {
-      username: user.username,
-    };
-    return res.status(200).json({ msg: "User is logged in", user: userData });
+    return res.status(200).json({ msg: "User is logged in", user });
   }
 }
 
