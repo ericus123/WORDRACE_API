@@ -12,12 +12,11 @@ const userSchema = new mongoose.Schema({
     max: 1024,
     min: 6,
   },
-  posts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Scores",
-    },
-  ],
+  scores: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Scores",
+    default: null,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

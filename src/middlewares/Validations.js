@@ -26,3 +26,24 @@ export const userValidation = (req, res, next) => {
   if (error) return res.status(400).json({ error: error.details[0].message });
   next();
 };
+
+export const scoreValidation = (req, res, next) => {
+  const schema = Joi.object({
+    level: Joi.number().min(1).max(3).required().messages({
+      "any.base": "Level must be a number only",
+      "any.empty": "Please fthe level",
+      "any.min": "Level must at least be one",
+      "any.max": "This is the last level of the game",
+      "any.required": "Level is required",
+    }),
+    scores: Joi.number().min(1).required().messages({
+      "any.base": "Score must be a number only",
+      "any.empty": "Please fill in the score",
+      "any.min": "Score must at least be one",
+      "any.required": "Score is required",
+    }),
+  });
+  const { error } = schema.validate(req.body);
+  if (error) return res.status(400).json({ error: error.details[0].message });
+  next();
+};

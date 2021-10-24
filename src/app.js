@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import routes from "./routes/index.js"
+import routes from "./routes/index.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.static("storage"));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
+app.use(cors());
 //routes
 
 app.use("/api", routes);
